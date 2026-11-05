@@ -15,16 +15,35 @@ document.addEventListener('keydown', event => {
 });
 const search = document.querySelector('#publication-search');
 const publications = [...document.querySelectorAll('.publication')];
-search?.addEventListener('input', () => {
-  const query = search.value.toLocaleLowerCase().trim();
+const typeFilter = document.querySelector('#publication-type');
+const yearFilter = document.querySelector('#publication-year');
+const normalizeSearch = value => value.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+function filterPublications() {
+  const terms = normalizeSearch(search.value).trim().split(/\s+/).filter(Boolean);
   let count = 0;
   publications.forEach(item => {
-    const match = item.dataset.search.includes(query);
+    const text = normalizeSearch(item.dataset.search);
+    const match = terms.every(term => text.includes(term)) &&
+      (!typeFilter.value || item.dataset.type === typeFilter.value) &&
+      (!yearFilter.value || item.dataset.year === yearFilter.value);
     item.hidden = !match;
     if (match) count++;
   });
-  document.querySelector('.publication-count').textContent = `${count} of ${publications.length} selected publications`;
+  document.querySelector('.publication-count').textContent = `${count} of ${publications.length} research outputs · newest first`;
   document.querySelector('.empty-result').hidden = count !== 0;
+}
+if (search && typeFilter && yearFilter) {
+  document.querySelector('.publication-tools').hidden = false;
+  search.addEventListener('input', filterPublications);
+  typeFilter.addEventListener('change', filterPublications);
+  yearFilter.addEventListener('change', filterPublications);
+}
+document.querySelector('.reset-filters')?.addEventListener('click', () => {
+  search.value = '';
+  typeFilter.value = '';
+  yearFilter.value = '';
+  filterPublications();
+  search.focus();
 });
 let statusTimeout;
 function announce(message) {

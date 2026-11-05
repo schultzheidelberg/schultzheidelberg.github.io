@@ -19,6 +19,19 @@ styles, scripts, and images are in `assets/`. The generated `docs/` directory is
 committed so GitHub Pages can publish it directly. Run the build again after any
 source changes and commit both source files and generated output.
 
+## Publications
+
+`data/publications.json` is the source for the complete publications page and
+the selected journal articles on the home page. `bibliography.py` renders all
+records with their output types, verified years, source links, and notes.
+Search and type/year filters enhance the static list; all records remain
+readable without JavaScript.
+
+Keep the public PDF, BibTeX, CSV, JSON, and Markdown exports in `data/` together.
+The build copies these five files to `docs/downloads/` for public access without
+a login. The PDF is the public bibliography, not the separate private manuscript
+review. Publisher/repository PDFs are linked rather than copied into this site.
+
 ## Publish with GitHub Pages
 
 Use the public repository `schultzheidelberg/schultzheidelberg.github.io`.

@@ -1,7 +1,8 @@
 """Build a small, portable academic website using only the Python standard library."""
 from pathlib import Path
 from html import escape as e
-from shutil import copytree
+from shutil import copytree, copyfile
+from bibliography import EXPORT_FORMATS, load_publications, publication_venue, render_publications
 
 ROOT = Path(__file__).parent
 DIST = ROOT / 'docs'
@@ -41,14 +42,7 @@ def link(label, url, cls='arrow-link', external=False):
 def heading(title, intro, eyebrow='EARTH OBSERVATION & OPEN SCIENCE'):
     return f'<header class="page-heading"><div class="eyebrow">{eyebrow}</div><h1>{title}</h1><p class="intro">{intro}</p></header>'
 
-PUBLICATIONS = [
- dict(year=2026, title='Assessment of Ground Deformation in Mandalay, Myanmar, Using InSAR with Sentinel-1 Data After the March 2025 Earthquake', authors='Taghi Lou, B.; Schultz, M.; Braun, A.; Hochschild, V.', journal='Science of Remote Sensing · 13, 100358', doi='10.1016/j.srs.2025.100358', keywords='InSAR Sentinel-1 earthquake ground deformation'),
- dict(year=2025, title='OSMlanduse a dataset of European Union land use at 10 m resolution derived from OpenStreetMap and Sentinel-2', authors='Schultz, M.; Li, H.; Wu, Z.; Wiell, D.; Auer, M.; Zipf, A.', journal='Scientific Data · 12, 750', doi='10.1038/s41597-025-04703-8', keywords='land use deep learning OSM open data Europe Sentinel-2'),
- dict(year=2025, title='Flood Risk Information System for Adaptation Measures and Evaluation in Central Vietnam – (FRAME) – GeoNode Facilitation', authors='Schultz, M.; Bick, C.; Bachofer, F.; Braun, A.; Hochschild, V.', journal='SURE Solutions · Vol. 2, pp. 86–92', doi='10.34712/142.70', keywords='flood risk adaptation FRAME Vietnam GeoNode'),
- dict(year=2022, title='Leveraging OpenStreetMap and Multimodal Remote Sensing Data with Joint Deep Learning for Wastewater Treatment Plants Detection', authors='Li, H.; Zech, J.; Hong, D.; Ghamisi, P.; Schultz, M.; Zipf, A.', journal='International Journal of Applied Earth Observation and Geoinformation · 110, 102804', doi='10.1016/j.jag.2022.102804', keywords='deep learning OpenStreetMap wastewater infrastructure'),
- dict(year=2017, title='Open land cover from OpenStreetMap and remote sensing', authors='Schultz, M.; Voss, J.; Auer, M.; Carter, S.; Zipf, A.', journal='International Journal of Applied Earth Observation and Geoinformation · 63, 206–213', doi='10.1016/j.jag.2017.07.014', keywords='land cover OpenStreetMap open data'),
- dict(year=2016, title='Performance of vegetation indices from Landsat time series in deforestation monitoring', authors='Schultz, M.; Clevers, J. G. P. W.; Carter, S.; Verbesselt, J.; Avitabile, V.; Quang, H. V.; Herold, M.', journal='International Journal of Applied Earth Observation and Geoinformation · 52, 318–327', doi='10.1016/j.jag.2016.06.020', keywords='forest Landsat time series vegetation deforestation')
-]
+PUBLICATIONS = load_publications(ROOT / 'data' / 'publications.json')
 
 credit = '<p class="image-credit"><a href="https://www.nature.com/articles/s41597-025-04703-8/figures/2">Schultz et al. (2025), Fig. 2</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>'
 feature = f'''<div class="feature"><a class="feature-visual" href="/projects/#osmlanduse" aria-label="Explore the OSMlanduse project"><img src="/assets/osmlanduse-map.webp" width="1900" height="1345" alt="OSMlanduse research figure showing land-use maps of Europe and detailed regional comparisons" loading="lazy"></a><div class="feature-copy"><span class="tag">FEATURED PROJECT · OPEN DATA</span><h3>Europe, at 10 metres.</h3><p>OSMlanduse brings OpenStreetMap and Sentinel-2 together to map land use across the European Union.</p>{link('Explore OSMlanduse','/projects/#osmlanduse')}</div></div>{credit}'''
@@ -65,9 +59,10 @@ about = heading('From space to<br>better decisions.', 'I turn satellite observat
 <li><a href="/projects/#osmlanduse"><span class="theme-num">03</span><div><h3>Europe · OSMlanduse</h3><p>OpenStreetMap and Sentinel-2, brought together in a 10-metre land-use map.</p></div>{icon('arrow')}</a></li>
 </ul></section>
 <section class="section" aria-labelledby="recent"><div class="section-top"><h2 id="recent">Selected publications</h2>{link('View publications','/publications/')}</div>'''
-for p in PUBLICATIONS[:2]:
-    about += f'<article class="publication-preview"><time>{p["year"]}</time><div><h3><a href="https://doi.org/{p["doi"]}">{e(p["title"])}</a></h3><p>{e(p["journal"])}</p></div></article>'
-about += '</section>'
+for doi in ('10.1016/j.srs.2025.100358', '10.1038/s41597-025-04703-8'):
+    p = next(record for record in PUBLICATIONS if record['doi'] == doi)
+    about += f'<article class="publication-preview"><time>{p["year"]}</time><div><h3><a href="https://doi.org/{p["doi"]}">{e(p["title"])}</a></h3><p>{e(publication_venue(p))}</p></div></article>'
+about += f'<p class="subtle bibliography-home">Explore <a href="/publications/">{len(PUBLICATIONS)} verified research outputs</a>, including {sum(p["publication_type"] == "Journal article" for p in PUBLICATIONS)} journal articles, with citations and bibliography downloads.</p></section>'
 
 research = heading('Research', 'Connecting observations, methods, and environmental questions.') + f'''
 <div class="body-copy"><p>My research spans open land-use mapping, satellite time-series analysis, and the use of geospatial information to understand environmental risk.</p></div>
@@ -88,14 +83,9 @@ projects = heading('Projects', 'From flood resilience in Vietnam to land monitor
 <section class="project" id="osmlanduse"><span class="tag">LAND USE · EUROPE</span><h2>OSMlanduse</h2><p>A 10-metre land-use dataset combining OpenStreetMap and Sentinel-2. The project connects volunteered geographic information with satellite observations and deep learning to map land use across the European Union.</p><p class="project-meta">2020 reference year · Published in Scientific Data, 2025 · Joint first authors: Michael Schultz and Hao Li</p><div class="project-links">{link('Explore the map','https://osmlanduse.org',external=True)}{link('Get the data',DATA,external=True)}{link('Source code',REPO,external=True)}{link('Paper',PAPER,external=True)}</div><figure class="project-figure"><a href="https://www.nature.com/articles/s41597-025-04703-8/figures/2"><img src="/assets/osmlanduse-map.webp" width="1900" height="1345" alt="European land-use map and regional comparisons from the OSMlanduse study" loading="lazy"></a><figcaption>{credit}</figcaption></figure></section>
 <section class="project" id="forest-monitoring"><span class="tag">SATELLITE TIME SERIES · TROPICAL FORESTS</span><h2>Tropical deforestation monitoring</h2><p>Doctoral research on detecting forest change from Landsat time series, with a focus on breakpoint detection and the performance of vegetation indices.</p><p class="project-meta">Doctoral thesis · Wageningen University, 2018</p><div class="project-links">{link('Explore the thesis',THESIS,external=True)}</div></section>'''
 
-publications = heading('Publications', 'Selected papers and contributions on land use, environmental change, and geospatial methods.') + f'''
-<div class="inline-links">{link('ORCID profile',ORCID,external=True)}{link('ResearchGate','https://www.researchgate.net/profile/Michael-Schultz-6',external=True)}</div>
-<div class="publication-tools"><label class="search-field" for="publication-search"><span class="sr-only">Search selected publications</span>{icon('search')}<input id="publication-search" type="search" placeholder="Search by title, topic, author, or year…" autocomplete="off"></label></div><p class="publication-count" aria-live="polite">{len(PUBLICATIONS)} selected publications</p><div class="publication-list">'''
-for p in PUBLICATIONS:
-    citation = f'{p["authors"]} ({p["year"]}). {p["title"]}. {p["journal"]}. https://doi.org/{p["doi"]}'
-    haystack = ' '.join(str(v) for v in p.values()).lower()
-    publications += f'''<article class="publication" data-search="{e(haystack,quote=True)}"><time class="pub-year">{p['year']}</time><div><h2><a href="https://doi.org/{p['doi']}">{e(p['title'])}</a></h2><p class="pub-authors">{e(p['authors'])}</p><p class="pub-journal">{e(p['journal'])}</p><div class="pub-actions"><a href="https://doi.org/{p['doi']}">Read publication ↗</a><button class="copy-citation" data-citation="{e(citation,quote=True)}" aria-label="Copy citation for {e(p['title'],quote=True)}">Copy citation</button></div></div></article>'''
-publications += '</div><p class="empty-result" hidden>No matching publications. Try a different title, topic, author, or year.</p>'
+publications = heading('Publications', 'Research on land use, environmental change, and geospatial methods — from journal articles to open data and practical tools.')
+publications += render_publications(PUBLICATIONS)
+publications += f'<div class="inline-links">{link("ORCID profile",ORCID,external=True)}{link("ResearchGate","https://www.researchgate.net/profile/Michael-Schultz-6",external=True)}</div>'
 
 code = heading('Code', 'Open research workflows, from observations to land-use information.') + f'''
 <section class="resource"><span class="tag">FEATURED REPOSITORY</span><h2>OpenStreetMap land use for Europe</h2><p>Source code for the OSM4EO deep-learning workflow, including training-sample preparation, model training, classification, and post-processing.</p><div class="resource-details"><span>Python</span><span>Deep learning</span><span>Sentinel-2</span><span>OpenStreetMap</span><span>GPL-3.0</span></div>{link('View repository',REPO,external=True)}</section>
@@ -142,6 +132,9 @@ def shell(key,title,body):
 
 DIST.mkdir(exist_ok=True)
 copytree(ROOT / 'assets', DIST / 'assets', dirs_exist_ok=True)
+(DIST / 'downloads').mkdir(exist_ok=True)
+for extension in EXPORT_FORMATS:
+    copyfile(ROOT / 'data' / f'publications.{extension}', DIST / 'downloads' / f'publications.{extension}')
 (DIST / '.nojekyll').write_text('', encoding='utf-8')
 
 for key,(title,body) in PAGES.items():

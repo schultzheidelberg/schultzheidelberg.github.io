@@ -1,0 +1,130 @@
+"""Render the public, verified bibliography without a browser-side data fetch."""
+
+import json
+from collections import Counter
+from datetime import date
+from html import escape
+from urllib.parse import urlsplit
+
+
+GROUPS = {
+    'Journal article': 'Journal articles',
+    'Book chapter': 'Books & chapters',
+    'Edited proceedings': 'Books & chapters',
+    'Conference paper': 'Conference contributions',
+    'Conference abstract': 'Conference contributions',
+    'Conference contribution': 'Conference contributions',
+    'Workshop paper': 'Conference contributions',
+    'Report': 'Reports & briefs',
+    'Report contribution': 'Reports & briefs',
+    'Policy brief contribution': 'Reports & briefs',
+    'Dataset': 'Datasets',
+    'Doctoral thesis': 'Theses',
+    'Master’s thesis': 'Theses',
+    'Presentation': 'Presentations',
+}
+EXPORT_FORMATS = ('pdf', 'bib', 'csv', 'json', 'md')
+
+
+def load_publications(path):
+    records = json.loads(path.read_text(encoding='utf-8'))
+    ids = [record['record_id'] for record in records]
+    if len(ids) != len(set(ids)):
+        raise ValueError('Publication record IDs must be unique')
+    for record in records:
+        if record['verification'] != 'verified':
+            raise ValueError(f"Unverified publication: {record['record_id']}")
+        if record['publication_type'] not in GROUPS:
+            raise ValueError(f"Add a display group for {record['publication_type']}")
+    return sorted(records, key=lambda record: -record['year'])
+
+
+def publication_venue(record):
+    volume = str(record.get('volume', ''))
+    if record.get('issue'):
+        volume += f"({record['issue']})"
+    return ' · '.join(str(part) for part in
+                      (record['venue'], volume, record.get('pages')) if part)
+
+
+def source_link(label, url):
+    # Only public HTTPS sources become clickable; unsafe/staging URLs stay out.
+    parsed = urlsplit(url)
+    if parsed.scheme != 'https' or not parsed.netloc:
+        return ''
+    return f'<a href="{escape(url, quote=True)}">{escape(label)}</a>'
+
+
+def render_record(record):
+    title = record['title']
+    venue = publication_venue(record)
+    doi_url = 'https://doi.org/' + record['doi'] if record.get('doi') else ''
+    main_url = record['landing_url'] or doi_url
+    citation = f"{record['authors']} ({record['year']}). {title}. {venue}."
+    if doi_url:
+        citation += ' ' + doi_url
+    actions = [source_link('Source record ↗', main_url)]
+    if doi_url:
+        actions.append(source_link('Volume DOI ↗' if record.get('doi_scope') else 'DOI ↗', doi_url))
+    pdf_url = record.get('pdf_url', '')
+    pdf_label = 'Source PDF ↗'
+    if 'thesis' in record.get('pdf_version', '').lower():
+        pdf_url = record.get('alternate_pdf_url') or pdf_url
+        pdf_label = 'Thesis PDF (includes study) ↗'
+    if pdf_url:
+        actions.append(source_link(pdf_label, pdf_url))
+    actions.append(f'<button class="copy-citation" data-citation="{escape(citation, quote=True)}" '
+                   f'aria-label="Copy citation for {escape(title, quote=True)}">Copy citation</button>')
+    contributor = ''
+    if record.get('contributors'):
+        contributor = '<p class="pub-contribution">Contributor: Michael Schultz · not a principal author</p>'
+    sources = ' · '.join(filter(None, (
+        source_link(f'Source {index}', url)
+        for index, url in enumerate(dict.fromkeys(record.get('evidence_urls', [])), 1)
+    )))
+    notes = escape(record.get('notes', ''))
+    scope = '<p>The DOI identifies the complete volume, not this individual contribution.</p>' if record.get('doi_scope') else ''
+    group = GROUPS[record['publication_type']]
+    haystack = ' '.join(str(record.get(key, '')) for key in
+                        ('title', 'authors', 'year', 'venue', 'doi', 'publication_type', 'contributors'))
+    return f'''<article class="publication" id="{escape(record['record_id'])}" data-search="{escape(haystack, quote=True)}" data-type="{escape(group, quote=True)}" data-year="{record['year']}">
+<time class="pub-year" datetime="{record['year']}">{record['year']}</time><div>
+<p class="pub-type">{escape(record['publication_type'])}</p>
+<h2>{source_link(title, main_url)}</h2>
+<p class="pub-authors">{escape(record['authors'])}</p>{contributor}
+<p class="pub-journal">{escape(venue)}</p>
+<div class="pub-actions">{''.join(actions)}</div>
+<details class="pub-evidence"><summary>Record notes &amp; sources</summary>
+<p>Status: {escape(record['status'])}. Checked {escape(record['checked_on'])}.</p>{scope}
+<p>{notes}</p><p class="evidence-links">{sources}</p>
+</details></div></article>'''
+
+
+def render_publications(records):
+    total = len(records)
+    journal_count = sum(record['publication_type'] == 'Journal article' for record in records)
+    years = sorted({record['year'] for record in records}, reverse=True)
+    checked = date.fromisoformat(max(record['checked_on'] for record in records))
+    checked_label = f'{checked.day} {checked:%B %Y}'
+    counts = Counter(GROUPS[record['publication_type']] for record in records)
+    type_options = ''.join(f'<option value="{escape(group, quote=True)}">{escape(group)} ({counts[group]})</option>'
+                           for group in dict.fromkeys(GROUPS.values()) if counts[group])
+    year_options = ''.join(f'<option value="{year}">{year}</option>' for year in years)
+    formats = {'pdf': 'PDF bibliography', 'bib': 'BibTeX', 'csv': 'CSV', 'json': 'JSON', 'md': 'Markdown'}
+    downloads = ''.join(f'<a href="/downloads/publications.{extension}" download>{formats[extension]} ↓</a>'
+                        for extension in EXPORT_FORMATS)
+    return f'''
+<div class="bibliography-overview">
+<dl class="publication-stats"><div><dt>Verified research outputs</dt><dd>{total}</dd></div><div><dt>Journal articles</dt><dd>{journal_count}</dd></div><div><dt>Years of work</dt><dd>{min(years)}–{max(years)}</dd></div></dl>
+<p class="subtle">Journal articles, chapters, datasets, reports, theses, and conference contributions. Editorial and contributor roles are labelled in each record. Last checked <time datetime="{checked.isoformat()}">{checked_label}</time>.</p>
+</div>
+<section class="bibliography-downloads" aria-labelledby="download-bibliography"><h2 id="download-bibliography">Take the bibliography with you</h2><p>Download the complete public inventory, with citations and source notes.</p><div class="download-links">{downloads}</div></section>
+<div class="publication-tools" hidden>
+<label class="search-field" for="publication-search"><span>Search the bibliography</span><input id="publication-search" type="search" placeholder="Title, author, topic, or DOI…" autocomplete="off" aria-controls="publication-list"></label>
+<div class="publication-filters"><label for="publication-type">Output type<select id="publication-type" aria-controls="publication-list"><option value="">All outputs ({total})</option>{type_options}</select></label><label for="publication-year">Year<select id="publication-year" aria-controls="publication-list"><option value="">All years</option>{year_options}</select></label><button class="reset-filters" type="button">Clear filters</button></div>
+</div>
+<noscript><p class="subtle">All records are listed below, newest first. Use your browser’s Find command to search.</p></noscript>
+<p class="publication-count" role="status" aria-live="polite">{total} research outputs · newest first</p>
+<div class="publication-list" id="publication-list">{''.join(render_record(record) for record in records)}</div>
+<p class="empty-result" hidden>No matching research outputs. Try another search or clear the filters.</p>
+<p class="bibliography-footnote">Years follow the final journal issue or repository record; an earlier online date may differ. PDF links lead to publisher or repository copies; availability varies. Thesis alternatives and volume-level DOIs are labelled. See record notes for bibliographic corrections and access limitations.</p>'''
