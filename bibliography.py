@@ -100,12 +100,17 @@ def render_record(record):
 </details></div></article>'''
 
 
-def render_publications(records):
+def render_publications(records, metrics):
     total = len(records)
     journal_count = sum(record['publication_type'] == 'Journal article' for record in records)
     years = sorted({record['year'] for record in records}, reverse=True)
     checked = date.fromisoformat(max(record['checked_on'] for record in records))
     checked_label = f'{checked.day} {checked:%B %Y}'
+    metrics_checked = date.fromisoformat(metrics['checked_on'])
+    metrics_date_label = f'{metrics_checked.day} {metrics_checked:%B %Y}'
+    if type(metrics['h_index']) is not int or metrics['h_index'] < 0:
+        raise ValueError('h-index must be a non-negative integer')
+    metric_source = source_link(metrics['source'], metrics['profile_url'])
     counts = Counter(GROUPS[record['publication_type']] for record in records)
     type_options = ''.join(f'<option value="{escape(group, quote=True)}">{escape(group)} ({counts[group]})</option>'
                            for group in dict.fromkeys(GROUPS.values()) if counts[group])
@@ -115,7 +120,8 @@ def render_publications(records):
                         for extension in EXPORT_FORMATS)
     return f'''
 <div class="bibliography-overview">
-<dl class="publication-stats"><div><dt>Verified research outputs</dt><dd>{total}</dd></div><div><dt>Journal articles</dt><dd>{journal_count}</dd></div><div><dt>Years of work</dt><dd>{min(years)}–{max(years)}</dd></div></dl>
+<dl class="publication-stats"><div><dt>h-index · {metric_source}</dt><dd>{metrics['h_index']}</dd></div><div><dt>Verified research outputs</dt><dd>{total}</dd></div><div><dt>Journal articles</dt><dd>{journal_count}</dd></div><div><dt>Years of work</dt><dd>{min(years)}–{max(years)}</dd></div></dl>
+<p class="subtle">h-index: {escape(metrics['source'])}, checked <time datetime="{metrics_checked.isoformat()}">{metrics_date_label}</time>. Citation metrics vary by database.</p>
 <p class="subtle">Journal articles, chapters, datasets, reports, theses, and conference contributions. Editorial and contributor roles are labelled in each record. Last checked <time datetime="{checked.isoformat()}">{checked_label}</time>.</p>
 </div>
 <section class="bibliography-downloads" aria-labelledby="download-bibliography"><h2 id="download-bibliography">Take the bibliography with you</h2><p>Download the complete public inventory, with citations and source notes.</p><div class="download-links">{downloads}</div></section>

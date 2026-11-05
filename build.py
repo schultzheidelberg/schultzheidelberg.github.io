@@ -2,6 +2,7 @@
 from pathlib import Path
 from html import escape as e
 from shutil import copytree, copyfile
+import json
 from bibliography import EXPORT_FORMATS, load_publications, publication_venue, render_publications
 
 ROOT = Path(__file__).parent
@@ -43,6 +44,7 @@ def heading(title, intro, eyebrow='EARTH OBSERVATION & OPEN SCIENCE'):
     return f'<header class="page-heading"><div class="eyebrow">{eyebrow}</div><h1>{title}</h1><p class="intro">{intro}</p></header>'
 
 PUBLICATIONS = load_publications(ROOT / 'data' / 'publications.json')
+RESEARCH_METRICS = json.loads((ROOT / 'data' / 'research-metrics.json').read_text(encoding='utf-8'))
 
 credit = '<p class="image-credit"><a href="https://www.nature.com/articles/s41597-025-04703-8/figures/2">Schultz et al. (2025), Fig. 2</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>'
 feature = f'''<div class="feature"><a class="feature-visual" href="/projects/#osmlanduse" aria-label="Explore the OSMlanduse project"><img src="/assets/osmlanduse-map.webp" width="1900" height="1345" alt="OSMlanduse research figure showing land-use maps of Europe and detailed regional comparisons" loading="lazy"></a><div class="feature-copy"><span class="tag">FEATURED PROJECT · OPEN DATA</span><h3>Europe, at 10 metres.</h3><p>OSMlanduse brings OpenStreetMap and Sentinel-2 together to map land use across the European Union.</p>{link('Explore OSMlanduse','/projects/#osmlanduse')}</div></div>{credit}'''
@@ -84,7 +86,7 @@ projects = heading('Projects', 'From flood resilience in Vietnam to land monitor
 <section class="project" id="forest-monitoring"><span class="tag">SATELLITE TIME SERIES · TROPICAL FORESTS</span><h2>Tropical deforestation monitoring</h2><p>Doctoral research on detecting forest change from Landsat time series, with a focus on breakpoint detection and the performance of vegetation indices.</p><p class="project-meta">Doctoral thesis · Wageningen University, 2018</p><div class="project-links">{link('Explore the thesis',THESIS,external=True)}</div></section>'''
 
 publications = heading('Publications', 'Research on land use, environmental change, and geospatial methods — from journal articles to open data and practical tools.')
-publications += render_publications(PUBLICATIONS)
+publications += render_publications(PUBLICATIONS, RESEARCH_METRICS)
 publications += f'<div class="inline-links">{link("ORCID profile",ORCID,external=True)}{link("ResearchGate","https://www.researchgate.net/profile/Michael-Schultz-6",external=True)}</div>'
 
 code = heading('Code', 'Open research workflows, from observations to land-use information.') + f'''

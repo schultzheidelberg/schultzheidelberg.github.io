@@ -27,6 +27,10 @@ records with their output types, verified years, source links, and notes.
 Search and type/year filters enhance the static list; all records remain
 readable without JavaScript.
 
+`data/research-metrics.json` stores the source-labelled h-index shown first in
+the publications summary. This is a dated snapshot, not a live counter. Check the
+linked author profile against the ORCID before updating the value and date.
+
 Keep the public PDF, BibTeX, CSV, JSON, and Markdown exports in `data/` together.
 The build copies these five files to `docs/downloads/` for public access without
 a login. The PDF is the public bibliography, not the separate private manuscript
