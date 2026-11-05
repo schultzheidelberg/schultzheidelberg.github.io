@@ -12,6 +12,7 @@ EMAIL = 'schultz.consulting@outlook.com'
 GITHUB = 'https://github.com/schultzheidelberg'
 REPO = GITHUB + '/OpenStreetMap-land-use-for-Europe-2020'
 ORCID = 'https://orcid.org/0000-0002-4813-090X'
+SCHOLAR = 'https://scholar.google.com/citations?user=215uIhEAAAAJ&hl=en'
 LINKEDIN = 'https://de.linkedin.com/in/michael-schultz-a9025638'
 PROFILE = 'https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/geowissenschaften/arbeitsgruppen/geographie/forschungsbereich/geoinformatik-gis/arbeitsgruppe/team/michael-schultz/'
 INSTITUTIONAL_PUBS = 'https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/geowissenschaften/arbeitsgruppen/geographie/forschungsbereich/geoinformatik-gis/arbeitsgruppe/publikationen/'
@@ -53,7 +54,7 @@ frame_feature = f'''<div class="feature frame-feature"><a class="feature-visual"
 
 about = heading('From space to<br>better decisions.', 'I turn satellite observations into useful maps, open data, and tools for understanding a changing world.', 'ABOUT · MICHAEL SCHULTZ') + f'''
 <div class="body-copy"><p>I’m Michael Schultz, an earth observation researcher based in <strong>Reutlingen, Germany</strong>. My work brings together remote sensing, machine learning, and open geospatial information.</p><p>My projects span flood-risk planning in Vietnam, land monitoring in Ukraine, and satellite-based observations of African border crossings. The common thread: making complex environmental information useful beyond the research paper.</p></div>
-<div class="inline-links">{link('Explore my projects','/projects/')}{link('Get in touch','/contact/')}</div>
+<div class="inline-links">{link('Explore my projects','/projects/')}{link('Google Scholar · citations & h-index',SCHOLAR,external=True)}{link('Get in touch','/contact/')}</div>
 <section class="section" aria-labelledby="featured"><div class="section-top"><h2 id="featured">Research you can explore</h2>{link('About FRAME','/projects/#frame')}</div>{frame_feature}</section>
 <section class="section" aria-labelledby="themes"><div class="section-top"><h2 id="themes">Recent work & open projects</h2>{link('All projects','/projects/')}</div><ul class="theme-list">
 <li><a href="/projects/#ukraine"><span class="theme-num">01</span><div><h3>Ukraine · Land monitoring for climate reporting</h3><p>Contributing satellite-based land-use mapping to the PAABS programme.</p></div>{icon('arrow')}</a></li>
@@ -86,6 +87,7 @@ projects = heading('Projects', 'From flood resilience in Vietnam to land monitor
 <section class="project" id="forest-monitoring"><span class="tag">SATELLITE TIME SERIES · TROPICAL FORESTS</span><h2>Tropical deforestation monitoring</h2><p>Doctoral research on detecting forest change from Landsat time series, with a focus on breakpoint detection and the performance of vegetation indices.</p><p class="project-meta">Doctoral thesis · Wageningen University, 2018</p><div class="project-links">{link('Explore the thesis',THESIS,external=True)}</div></section>'''
 
 publications = heading('Publications', 'Research on land use, environmental change, and geospatial methods — from journal articles to open data and practical tools.')
+publications += f'<div class="inline-links">{link("Google Scholar · view citations & h-index",SCHOLAR,external=True)}</div>'
 publications += render_publications(PUBLICATIONS, RESEARCH_METRICS)
 publications += f'<div class="inline-links">{link("ORCID profile",ORCID,external=True)}{link("ResearchGate","https://www.researchgate.net/profile/Michael-Schultz-6",external=True)}</div>'
 
@@ -124,7 +126,7 @@ PAGES = {'':('About',about),'research':('Research',research),'projects':('Projec
 def shell(key,title,body):
     page_url = ORIGIN + ('/404.html' if key == '404' else '/' + (key + '/' if key else ''))
     nav=''.join(f'<a href="/{slug + "/" if slug else ""}"'+(' aria-current="page"' if key==slug else '')+f'>{label}</a>' for slug,(label,_) in PAGES.items() if slug!='sources')
-    profile_links=''.join(f'<a href="{url}">{icon(ic)}<span>{label}</span></a>' for ic,label,url in [('mail','Email','mailto:'+EMAIL),('github','GitHub',GITHUB),('id','ORCID',ORCID),('linkedin','LinkedIn',LINKEDIN),('book','ResearchGate','https://www.researchgate.net/profile/Michael-Schultz-6')])
+    profile_links=''.join(f'<a href="{e(url, quote=True)}">{icon(ic)}<span>{label}</span></a>' for ic,label,url in [('mail','Email','mailto:'+EMAIL),('github','GitHub',GITHUB),('book','Google Scholar',SCHOLAR),('id','ORCID',ORCID),('linkedin','LinkedIn',LINKEDIN),('book','ResearchGate','https://www.researchgate.net/profile/Michael-Schultz-6')])
     desc='Michael Schultz, based in Reutlingen, Germany — earth observation, FRAME flood-risk tools for Vietnam, land monitoring in Ukraine, and open geospatial data.'
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} — Michael Schultz</title><meta name="description" content="{desc}"><meta name="theme-color" content="#172a32"><link rel="canonical" href="{page_url}"><meta property="og:title" content="{e(title)} — Michael Schultz"><meta property="og:description" content="{desc}"><meta property="og:type" content="website"><meta property="og:url" content="{page_url}"><meta property="og:image" content="{ORIGIN}/assets/michael-schultz.webp"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script></head>
