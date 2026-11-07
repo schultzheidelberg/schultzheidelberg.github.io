@@ -51,3 +51,15 @@
 .pending-record h3 a:hover{color:var(--green)}
 .work-status{font-size:11px;color:var(--green);font-weight:600}
 .pending-record>.subtle{margin-top:10px}
+
+/* Give the Beitbridge 3D detail enough space to read as a map. */
+.portal-card--immersive{grid-template-columns:1fr;border-color:#294453;background:#142834;box-shadow:0 12px 32px #172a3214}
+.portal-card--immersive .portal-preview{background:#10202d}
+.portal-card--immersive .portal-preview img{height:auto;aspect-ratio:auto;object-fit:contain}
+.portal-card--immersive .portal-copy{padding:26px 30px;background:linear-gradient(120deg,#142834,#1d3d47);color:#f4f8f5}
+.portal-card--immersive .tag{color:#a6d4c1}
+.portal-card--immersive h3{font-size:31px}
+.portal-card--immersive p{max-width:630px;color:#d4e1e1}
+.portal-card--immersive .arrow-link{color:#c0e6d4}
+.portal-card--immersive .arrow-link:hover{color:#fff}
+@media(max-width:600px){.portal-card--immersive .portal-copy{padding:22px}.portal-card--immersive h3{font-size:26px}}
