@@ -14,6 +14,7 @@ GROUPS = {
     'Conference paper': 'Conference contributions',
     'Conference abstract': 'Conference contributions',
     'Conference contribution': 'Conference contributions',
+    'Conference presentation': 'Conference contributions',
     'Workshop paper': 'Conference contributions',
     'Report': 'Reports & briefs',
     'Report contribution': 'Reports & briefs',
@@ -60,7 +61,8 @@ def render_record(record):
     venue = publication_venue(record)
     doi_url = 'https://doi.org/' + record['doi'] if record.get('doi') else ''
     main_url = record['landing_url'] or doi_url
-    citation = f"{record['authors']} ({record['year']}). {title}. {venue}."
+    author_label = ('Presenter: ' if record.get('presenter_only') else '') + record['authors']
+    citation = f"{author_label} ({record['year']}). {title}. {venue}."
     if doi_url:
         citation += ' ' + doi_url
     actions = [source_link('Source record ↗', main_url)]
@@ -91,7 +93,7 @@ def render_record(record):
 <time class="pub-year" datetime="{record['year']}">{record['year']}</time><div>
 <p class="pub-type">{escape(record['publication_type'])}</p>
 <h2>{source_link(title, main_url)}</h2>
-<p class="pub-authors">{escape(record['authors'])}</p>{contributor}
+<p class="pub-authors">{escape(author_label)}</p>{contributor}
 <p class="pub-journal">{escape(venue)}</p>
 <div class="pub-actions">{''.join(actions)}</div>
 <details class="pub-evidence"><summary>Record notes &amp; sources</summary>
@@ -134,3 +136,27 @@ def render_publications(records, metrics):
 <div class="publication-list" id="publication-list">{''.join(render_record(record) for record in records)}</div>
 <p class="empty-result" hidden>No matching research outputs. Try another search or clear the filters.</p>
 <p class="bibliography-footnote">Years follow the final journal issue or repository record; an earlier online date may differ. PDF links lead to publisher or repository copies; availability varies. Thesis alternatives and volume-level DOIs are labelled. See record notes for bibliographic corrections and access limitations.</p>'''
+
+
+def render_work_in_progress(upcoming, manuscripts):
+    """Keep accepted future talks and submitted manuscripts outside output totals."""
+    output = ['<section class="section work-in-progress" id="upcoming"><h2>Upcoming conferences</h2><p class="subtle">Accepted contributions scheduled for December 2026. Listed separately from completed research outputs.</p>']
+    for record in sorted(upcoming, key=lambda item: item['scheduled_date']):
+        scheduled = date.fromisoformat(record['scheduled_date'])
+        label = f'{scheduled.day} {scheduled:%B %Y}'
+        output.append(f'''<article class="pending-record"><p class="work-status">Accepted · forthcoming poster</p>
+<h3>{source_link(record['title'], record['landing_url'])}</h3>
+<p class="pub-authors">{escape(record['authors'])}</p>
+<p class="pub-journal">{escape(record['venue'])} · <time datetime="{scheduled.isoformat()}">{label}</time> · {escape(record['session_code'])}</p>
+<p class="pub-actions">{source_link('Conference programme ↗', record['landing_url'])}</p></article>''')
+    output.append('</section><section class="section work-in-progress" id="manuscripts"><h2>Manuscripts</h2><p class="subtle">Current submissions and revisions. These are not counted as published journal articles or included in the bibliography totals.</p>')
+    for record in manuscripts:
+        status_date = date.fromisoformat(record['status_date'])
+        label = f'{status_date.day} {status_date:%B %Y}'
+        output.append(f'''<article class="pending-record"><p class="work-status">{escape(record['status'])}</p>
+<h3>{escape(record['title'])}</h3>
+<p class="pub-authors">{escape(record['authors'])}</p>
+<p class="pub-journal">{escape(record['venue'])}</p>
+<p class="subtle">Latest confirmed status: <time datetime="{status_date.isoformat()}">{label}</time>.</p></article>''')
+    output.append('</section>')
+    return ''.join(output)

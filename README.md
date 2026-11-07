@@ -32,9 +32,17 @@ the publications summary. This is a dated snapshot, not a live counter. Check th
 linked author profile against the ORCID before updating the value and date.
 
 Keep the public PDF, BibTeX, CSV, JSON, and Markdown exports in `data/` together.
+After updating the bibliography, run `python3 export_bibliography.py` before the
+website build. Exporting the PDF requires ReportLab and DejaVu Sans fonts; normal
+website builds still use only the standard library.
 The build copies these five files to `docs/downloads/` for public access without
 a login. The PDF is the public bibliography, not the separate private manuscript
 review. Publisher/repository PDFs are linked rather than copied into this site.
+
+Accepted future conference contributions are in `data/upcoming.json`, and current
+submission/revision metadata is in `data/manuscripts.json`. Both appear in separate
+sections and are excluded from completed-output and journal-article totals.
+Private correspondence and editorial attachments are not included in this repository.
 
 ## Publish with GitHub Pages
 

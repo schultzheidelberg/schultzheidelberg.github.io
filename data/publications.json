@@ -1417,5 +1417,56 @@
     ],
     "checked_on": "2026-11-05",
     "record_id": "MS-10BDFDDE"
+  },
+  {
+    "title": "Sentinel-1 coherence-based damage proxy maps for Ukraine: a support layer for LULUCF and greenhouse-gas accounting in inaccessible territories",
+    "authors": "Michael Schultz; Jonas Knecht; Andreas Vollrath; Oleksandr Diachuk; Andreas Braun; Volker Hochschild",
+    "year": 2026,
+    "publication_type": "Conference presentation",
+    "venue": "Arbeitskreis Fernerkundung 2026, Thünen-Institut, Braunschweig, Germany",
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "doi": "",
+    "status": "Programme-listed presentation",
+    "publication_date": "2026-10-08",
+    "landing_url": "https://arbeitskreis-fernerkundung.de/arbeitskreis-fernerkundung/2026-treffen-des-arbeitskreises-fernerkundung-in-braunschweig-programm/",
+    "pdf_url": "https://arbeitskreis-fernerkundung.de/wp-content/uploads/Presentation_S5_4__Land_use_and_cover_mapping_and_monitoring__Sentinel-1_coherence-based_dam__Michael_Schultz.pdf",
+    "license": "",
+    "evidence_urls": [
+      "https://arbeitskreis-fernerkundung.de/arbeitskreis-fernerkundung/2026-treffen-des-arbeitskreises-fernerkundung-in-braunschweig-programm/",
+      "https://arbeitskreis-fernerkundung.de/2026-treffen-des-arbeitskreises-fernerkundung-in-braunschweig/",
+      "https://arbeitskreis-fernerkundung.de/wp-content/uploads/Presentation_S5_4__Land_use_and_cover_mapping_and_monitoring__Sentinel-1_coherence-based_dam__Michael_Schultz.pdf"
+    ],
+    "notes": "Official programme title; the slide title is Sentinel-1 damage proxies in Ukraine: Building-focused trials for LULUCF and greenhouse-gas accounting. Full six-author byline verified from the first slide. Session 5: Land use and cover mapping and monitoring, 8 October 2026, 11:15–12:15.",
+    "verification": "verified",
+    "checked_on": "2026-11-07",
+    "record_id": "MS-4BCB13FA",
+    "pdf_status": "Public presentation slides available"
+  },
+  {
+    "title": "Development, Implementation, and Sustainability of the FRAME Federation for Enhanced Flood Risk Management in Vietnam with effortless large scaling potential",
+    "authors": "Michael Schultz",
+    "year": 2026,
+    "publication_type": "Conference presentation",
+    "venue": "CIGOS 2026: The 8th International Conference on Geotechnics, Civil Engineering and Structures, Ho Chi Minh City, Vietnam",
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "doi": "",
+    "status": "Programme-listed presentation",
+    "publication_date": "2026-04-17",
+    "landing_url": "https://cigos2026.sciencesconf.org/program?lang=en",
+    "pdf_url": "",
+    "license": "",
+    "evidence_urls": [
+      "https://cigos2026.sciencesconf.org/program?lang=en"
+    ],
+    "notes": "The official final programme lists Michael Schultz, Tübingen University, in AIP 4, Room 3 (Opera 1), 17 April 2026, 10:00–10:15. Recorded as a conference presentation; no matching abstract was found in the public 259-page Book of Abstracts, and no proceedings DOI was verified. Michael Schultz is the programme-listed presenter; additional coauthors were not publicly verified. The programme identifies the presenter; the complete author list has not been verified.",
+    "verification": "verified",
+    "checked_on": "2026-11-07",
+    "record_id": "MS-0ACB93EF",
+    "pdf_status": "No public slides located",
+    "presenter_only": true
   }
 ]
