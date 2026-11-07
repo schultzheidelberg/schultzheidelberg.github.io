@@ -52,7 +52,7 @@
 .work-status{font-size:11px;color:var(--green);font-weight:600}
 .pending-record>.subtle{margin-top:10px}
 
-/* Give the Beitbridge 3D detail enough space to read as a map. */
+/* Give the border-crossing 3D detail enough space to read as a map. */
 .portal-card--immersive{grid-template-columns:1fr;border-color:#294453;background:#142834;box-shadow:0 12px 32px #172a3214}
 .portal-card--immersive .portal-preview{background:#10202d}
 .portal-card--immersive .portal-preview img{height:auto;aspect-ratio:auto;object-fit:contain}
