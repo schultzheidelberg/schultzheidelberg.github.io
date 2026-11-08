@@ -53,3 +53,22 @@ No custom workflow, custom domain, API keys, or viewer authentication is needed.
 The `docs/.nojekyll` file tells GitHub Pages to serve the generated files as-is.
 
 Image credits and research sources are documented on the site's `/sources/` page.
+
+## Printable portfolio
+
+`data/Michael_Schultz_Portfolio.pdf` is a four-page A4 handout with white paper,
+project figures, selected publications, clickable links and vector QR codes to
+the stable public homepage. Its edition is November 2026. The homepage and CV
+link to `/downloads/Michael_Schultz_Portfolio.pdf`.
+
+To refresh the approved copy or imagery, edit `export_portfolio.py`, then run:
+
+```sh
+python3 export_portfolio.py
+python3 build.py
+```
+
+The exporter uses ReportLab, Pillow, DejaVu Sans and Liberation Serif. Ordinary
+site builds only copy the existing PDF and still use the Python standard library.
+After regenerating, inspect all four rendered pages and check the QR codes before
+publishing. Print on A4 at actual size; duplex printing uses the long-edge setting.

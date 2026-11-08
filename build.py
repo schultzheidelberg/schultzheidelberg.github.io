@@ -10,6 +10,7 @@ ROOT = Path(__file__).parent
 DIST = ROOT / 'docs'
 STYLESHEET = '/assets/site.css?v=' + sha256((ROOT / 'assets/site.css').read_bytes()).hexdigest()[:12]
 ORIGIN = 'https://schultzheidelberg.github.io'
+PORTFOLIO = '/downloads/Michael_Schultz_Portfolio.pdf'
 EMAIL = 'schultz.consulting@outlook.com'
 GITHUB = 'https://github.com/schultzheidelberg'
 REPO = GITHUB + '/OpenStreetMap-land-use-for-Europe-2020'
@@ -125,7 +126,7 @@ past_work = ''.join([
 
 about = heading('From space to<br>better decisions.', 'Earth observation, open geospatial data, and practical tools for research and decision-making.', 'ABOUT · MICHAEL SCHULTZ') + f'''
 <div class="body-copy"><p>I’m Michael Schultz, an earth observation researcher based in <strong>Tübingen, Germany</strong>. I am currently <strong>Acting Professor of Remote Sensing at Friedrich Schiller University Jena</strong>, with academic affiliations at the University of Tübingen and the University of Jena.</p><p>I connect satellite observations, machine learning, and open data with questions about land use, climate, infrastructure, and environmental change.</p></div>
-<div class="inline-links">{link('University of Jena',JENA,external=True)}{link('University of Tübingen',PROFILE,external=True)}{link('Google Scholar · citations & h-index',SCHOLAR,external=True)}</div>
+<div class="inline-links">{link('University of Jena',JENA,external=True)}{link('University of Tübingen',PROFILE,external=True)}{link('Google Scholar · citations & h-index',SCHOLAR,external=True)}{link('Portfolio · PDF',PORTFOLIO)}</div>
 <section class="section" aria-labelledby="platforms"><div class="section-top"><h2 id="platforms">Explore my work</h2>{link('All projects','/projects/')}</div><div class="portal-list">{portals}</div><p class="image-credit">Portal previews and a 3D overview of Chirundu · November 2026. Open a portal to explore the current site, or view its screenshot.</p></section>
 <section class="section past-work" aria-labelledby="past-work"><div class="section-top"><h2 id="past-work">Past work</h2>{link('Experience & studies','/projects/#past-work')}</div><p class="past-work-intro">Earlier work on REDD+, greenhouse-gas estimation and forest conservation, from Vietnam and Lao PDR to southern Africa.</p><div class="portal-list">{past_work}</div><p class="subtle past-work-followup">Further greenhouse-gas research: <a href="{CARBON_FLUXES}">land-use carbon fluxes in Baden-Württemberg (2023)</a> and <a href="{VEHICLE_EMISSIONS}">street-level vehicle emissions in Berlin (2023)</a>.</p></section>
 <section class="section research-cloud-section" aria-labelledby="research-cloud"><div class="section-top"><h2 id="research-cloud">Connected research themes</h2></div><nav class="research-cloud" aria-label="Explore research themes"><a class="cloud-largest" href="/research/">Earth observation</a><a class="cloud-large" href="/projects/#osmlanduse">Open data</a><a class="cloud-medium" href="/research/#land-use">Land use</a><a href="/projects/#ukraine">Climate reporting</a><a class="cloud-large" href="/research/">Geoinformatics</a><a href="/projects/#border-observatory">Transport &amp; infrastructure</a><a class="cloud-medium" href="/research/#forest-change">Satellite time series</a><a href="/projects/#frame">Flood risk</a><a class="cloud-medium" href="/code/">Machine learning</a><a href="/cv/">Research &amp; teaching</a></nav><p class="subtle">Explore the methods, places, and questions connecting my projects.</p></section>
@@ -178,7 +179,7 @@ data = heading('Data', 'Open datasets that make research accessible and reusable
 <section class="detail-section"><h2>Using the data</h2><p>The heiDATA record provides the files, version information, and applicable reuse terms. Please cite the dataset and associated publication when using this work.</p><div class="inline-links">{link('View source code','/code/')}</div></section>'''
 
 cv = heading('Background', 'Selected academic background and research experience.', 'CURRICULUM VITAE') + f'''
-<div class="cv-actions"><button class="button" data-print>{icon('print')}Print / save as PDF</button>{link('ORCID record',ORCID,external=True)}</div>
+<div class="cv-actions"><button class="button" data-print>{icon('print')}Print / save as PDF</button>{link('Portfolio · 4-page PDF',PORTFOLIO)}{link('ORCID record',ORCID,external=True)}</div>
 <section class="section current-appointment"><h2>Current role & affiliations</h2><div class="body-copy"><p><strong>Acting Professor of Remote Sensing · Friedrich Schiller University Jena</strong></p><p>Academic affiliations: University of Jena and University of Tübingen. Based in Tübingen, Germany.</p></div><div class="inline-links">{link("University of Jena",JENA,external=True)}{link("University of Tübingen",PROFILE,external=True)}</div></section><section class="section"><h2>Current project focus</h2><div class="body-copy"><p style="margin-top:16px">Based in Tübingen, Germany, I work across satellite-based land monitoring, open geospatial information, and environmental decision-support tools.</p><p>Current work includes <em>{FRAME_NAME}</em> (FRAME), developed within FloodAdaptVN, whose current implementation phase is funded by BMFTR; land monitoring for <em>{PAABS_NAME}</em> (PAABS), supported by the International Climate Initiative (IKI); and trade and border monitoring with the World Bank.</p></div><div class="inline-links">{link('Flood risk · Vietnam','/projects/#frame')}{link('Paris Agreement & climate adaptation','/projects/#ukraine')}{link('Trade & border monitoring','/projects/#border-observatory')}</div></section>
 <div class="timeline"><section class="timeline-item"><span class="timeline-label">2018 · PhD</span><div><h3>Wageningen University</h3><p>Tropical deforestation monitoring using Landsat time series and breakpoint detection.</p><p>Doctorate awarded 15 October 2018.</p>{link('Doctoral thesis',THESIS,external=True)}</div></section>
 <section class="timeline-item"><span class="timeline-label">RESEARCH</span><div><h3>Remote sensing & volunteered geographic information</h3><p>Postdoctoral work at Heidelberg combining satellite observations with volunteered geographic information, including OpenStreetMap.</p>{link('Institutional biography',PROFILE,external=True)}</div></section>
@@ -221,6 +222,7 @@ for download_dir in (DIST / 'downloads', DIST / 'publications' / 'downloads'):
     download_dir.mkdir(parents=True, exist_ok=True)
     for extension in EXPORT_FORMATS:
         copyfile(ROOT / 'data' / f'publications.{extension}', download_dir / f'publications.{extension}')
+copyfile(ROOT / 'data' / 'Michael_Schultz_Portfolio.pdf', DIST / PORTFOLIO.lstrip('/'))
 (DIST / '.nojekyll').write_text('', encoding='utf-8')
 
 for key,(title,body) in PAGES.items():
