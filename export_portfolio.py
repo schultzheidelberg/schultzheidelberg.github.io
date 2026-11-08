@@ -134,9 +134,12 @@ def project(top, number, title, context, body, image, links, height=215, caption
     iw, gap = 211, 22
     tx, tw = M + iw + gap, CW - iw - gap
     label(number, M, top, iw)
-    picture(image, M, top+20, iw, image_height, image_link)
+    figure_scale = 0.5
+    preview_height = image_height * figure_scale
+    picture(image, M + iw * (1-figure_scale) / 2, top+20,
+            iw * figure_scale, preview_height, image_link)
     if caption:
-        paragraph(caption, M, top+image_height+27, iw, 7.2, 10, color=MUTED, max_bottom=bottom)
+        paragraph(caption, M, top+preview_height+27, iw, 7.2, 10, color=MUTED, max_bottom=bottom)
     y = paragraph(title, tx, top, tw, 17.8, 20.5, 'Display', max_bottom=bottom)
     y = paragraph(context, tx, y+7, tw, 8.1, 11.4, color=GREEN, max_bottom=bottom)
     y = paragraph(body, tx, y+10, tw, body_size, body_size*1.43, max_bottom=bottom)
