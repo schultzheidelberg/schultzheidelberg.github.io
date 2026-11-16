@@ -1,6 +1,6 @@
 # Michael Schultz — verified publication inventory
 
-60 verified research-output records, including 20 journal articles. Checked 7 November 2026.
+63 verified research-output records, including 20 journal articles. Checked 16 November 2026.
 
 ORCID: https://orcid.org/0000-0002-4813-090X
 
@@ -40,9 +40,39 @@ Behzad Taghi-Lou; Michael Schultz; Andreas Braun; Volker Hochschild (2026). Asse
 | checked_on | 2026-11-05 |
 | pdf_status | Open-access link located; PDF retrieval unresolved |
 
+### MS-7E6F24F3 — Copernicus-Landmonitor Ukraine: halbjährliche 10-m-Karten für Enhanced Transparency Framework (ETF)/National Inventory Report (NIR)
+
+Listed presenter: Michael Schultz (2026). Copernicus-Landmonitor Ukraine: halbjährliche 10-m-Karten für Enhanced Transparency Framework (ETF)/National Inventory Report (NIR). Nationales Forum für Fernerkundung und Copernicus 2026, Session G.3, ESOC, Darmstadt, Germany.
+
+[Source record](https://archiv.d-copernicus.de/infothek/veranstaltungen/nationales-forum-2026/programm/g3-erdbeobachtung-und-fernerkundung-in-der-anwendungspraxis-von-archaeologie-und-kulturgueterschutz/) · [Evidence 1](https://archiv.d-copernicus.de/infothek/veranstaltungen/nationales-forum-2026/programm/g3-erdbeobachtung-und-fernerkundung-in-der-anwendungspraxis-von-archaeologie-und-kulturgueterschutz/) · [Evidence 2](https://archiv.d-copernicus.de/infothek/veranstaltungen/nationales-forum-2026/)
+
+| Field | Value |
+| --- | --- |
+| record_id | MS-7E6F24F3 |
+| year | 2026 |
+| publication_type | Conference presentation |
+| title | Copernicus-Landmonitor Ukraine: halbjährliche 10-m-Karten für Enhanced Transparency Framework (ETF)/National Inventory Report (NIR) |
+| authors | Michael Schultz |
+| venue | Nationales Forum für Fernerkundung und Copernicus 2026, Session G.3, ESOC, Darmstadt, Germany |
+| volume |  |
+| issue |  |
+| pages |  |
+| doi |  |
+| status | Programme-listed impulse talk |
+| publication_date | 2026-04-30 |
+| landing_url | https://archiv.d-copernicus.de/infothek/veranstaltungen/nationales-forum-2026/programm/g3-erdbeobachtung-und-fernerkundung-in-der-anwendungspraxis-von-archaeologie-und-kulturgueterschutz/ |
+| pdf_url |  |
+| license |  |
+| verification | verified |
+| notes | The archived official programme lists Dr. Michael Schultz, University of Tübingen, for this impulse talk in Session G.3, 30 April 2026, 09:00–10:30, room Sentinel. This records the programme credit and does not claim personal delivery or a verified complete author list. Programme text was checked in the indexed official archive; direct archive access returned HTTP 404 on 16 November 2026. |
+| evidence_urls | ["https://archiv.d-copernicus.de/infothek/veranstaltungen/nationales-forum-2026/programm/g3-erdbeobachtung-und-fernerkundung-in-der-anwendungspraxis-von-archaeologie-und-kulturgueterschutz/", "https://archiv.d-copernicus.de/infothek/veranstaltungen/nationales-forum-2026/"] |
+| checked_on | 2026-11-16 |
+| pdf_status | No public presentation PDF verified |
+| presenter_only | true |
+
 ### MS-0ACB93EF — Development, Implementation, and Sustainability of the FRAME Federation for Enhanced Flood Risk Management in Vietnam with effortless large scaling potential
 
-Presenter: Michael Schultz (2026). Development, Implementation, and Sustainability of the FRAME Federation for Enhanced Flood Risk Management in Vietnam with effortless large scaling potential. CIGOS 2026: The 8th International Conference on Geotechnics, Civil Engineering and Structures, Ho Chi Minh City, Vietnam.
+Listed presenter: Michael Schultz (2026). Development, Implementation, and Sustainability of the FRAME Federation for Enhanced Flood Risk Management in Vietnam with effortless large scaling potential. CIGOS 2026: The 8th International Conference on Geotechnics, Civil Engineering and Structures, Ho Chi Minh City, Vietnam.
 
 [Source record](https://cigos2026.sciencesconf.org/program?lang=en) · [Evidence 1](https://cigos2026.sciencesconf.org/program?lang=en)
 
@@ -127,9 +157,38 @@ Schultz, Michael; Li, Hao; Wu, Zhaoyan; Wiell, Daniel; Auer, Michael; Zipf, Alex
 | evidence_urls | ["https://zenodo.org/records/21008023", "https://zenodo.org/api/records/21008023/files/01%20OSMlanduse_%20A%20dataset%20of%20European%20Union%20land%20use%20at%2010%20m%20resolution%20derived%20from%20OpenStreetMap%20and%20Sentinel-2%20(1).pdf/content"] |
 | checked_on | 2026-11-05 |
 
-### MS-4BCB13FA — Sentinel-1 coherence-based damage proxy maps for Ukraine: a support layer for LULUCF and greenhouse-gas accounting in inaccessible territories
+### MS-E5A45E22 — Reproducibility package for Reimagining Logistics and Connectivity from Space: Artificial Intelligence and Satellite Imagery Applications
 
-Michael Schultz; Jonas Knecht; Andreas Vollrath; Oleksandr Diachuk; Andreas Braun; Volker Hochschild (2026). Sentinel-1 coherence-based damage proxy maps for Ukraine: a support layer for LULUCF and greenhouse-gas accounting in inaccessible territories. Arbeitskreis Fernerkundung 2026, Thünen-Institut, Braunschweig, Germany.
+Michael Schultz; Hao Li; Himanshu Tiwari; Daniel Saslavsky; Satya Prasad Sahu; Daria Ulybina (2026). Reproducibility package for Reimagining Logistics and Connectivity from Space: Artificial Intelligence and Satellite Imagery Applications. World Bank Reproducible Research Repository.
+
+[Source record](https://reproducibility.worldbank.org/catalog/667) · [Evidence 1](https://reproducibility.worldbank.org/catalog/667) · [Evidence 2](https://reproducibility.worldbank.org/metadata/export/667/json)
+
+| Field | Value |
+| --- | --- |
+| record_id | MS-E5A45E22 |
+| year | 2026 |
+| publication_type | Reproducibility package |
+| title | Reproducibility package for Reimagining Logistics and Connectivity from Space: Artificial Intelligence and Satellite Imagery Applications |
+| authors | Michael Schultz; Hao Li; Himanshu Tiwari; Daniel Saslavsky; Satya Prasad Sahu; Daria Ulybina |
+| venue | World Bank Reproducible Research Repository |
+| volume |  |
+| issue |  |
+| pages |  |
+| doi |  |
+| status | Published |
+| publication_date | 2026-10-08 |
+| landing_url | https://reproducibility.worldbank.org/catalog/667 |
+| pdf_url |  |
+| license | MIT License with World Bank IGO Rider; data-specific terms apply |
+| verification | verified |
+| notes | Reference RR_WLD_2025_378. Catalog created 8 October 2026; metadata production 5 October 2026; scripts dated September 2026; last modified 20 October 2026. Six creators follow current catalog metadata. Software and reproducibility package accompanying a separate World Bank report; not a journal article. Some input datasets require separate access. The archive and README documentation are available through the catalog. |
+| evidence_urls | ["https://reproducibility.worldbank.org/catalog/667", "https://reproducibility.worldbank.org/metadata/export/667/json"] |
+| checked_on | 2026-11-16 |
+| pdf_status | Public reproducibility archive and README available through catalog; no standalone article PDF |
+
+### MS-4BCB13FA — Sentinel-1 damage proxies in Ukraine: Building-focused trials for LULUCF and greenhouse-gas accounting
+
+Michael Schultz; Jonas Knecht; Andreas Vollrath; Oleksandr Diachuk; Andreas Braun; Volker Hochschild (2026). Sentinel-1 damage proxies in Ukraine: Building-focused trials for LULUCF and greenhouse-gas accounting. Arbeitskreis Fernerkundung 2026, Thünen-Institut, Braunschweig, Germany.
 
 [Source record](https://arbeitskreis-fernerkundung.de/arbeitskreis-fernerkundung/2026-treffen-des-arbeitskreises-fernerkundung-in-braunschweig-programm/) · [Source PDF](https://arbeitskreis-fernerkundung.de/wp-content/uploads/Presentation_S5_4__Land_use_and_cover_mapping_and_monitoring__Sentinel-1_coherence-based_dam__Michael_Schultz.pdf) · [Evidence 1](https://arbeitskreis-fernerkundung.de/arbeitskreis-fernerkundung/2026-treffen-des-arbeitskreises-fernerkundung-in-braunschweig-programm/) · [Evidence 2](https://arbeitskreis-fernerkundung.de/2026-treffen-des-arbeitskreises-fernerkundung-in-braunschweig/) · [Evidence 3](https://arbeitskreis-fernerkundung.de/wp-content/uploads/Presentation_S5_4__Land_use_and_cover_mapping_and_monitoring__Sentinel-1_coherence-based_dam__Michael_Schultz.pdf)
 
@@ -138,22 +197,24 @@ Michael Schultz; Jonas Knecht; Andreas Vollrath; Oleksandr Diachuk; Andreas Brau
 | record_id | MS-4BCB13FA |
 | year | 2026 |
 | publication_type | Conference presentation |
-| title | Sentinel-1 coherence-based damage proxy maps for Ukraine: a support layer for LULUCF and greenhouse-gas accounting in inaccessible territories |
+| title | Sentinel-1 damage proxies in Ukraine: Building-focused trials for LULUCF and greenhouse-gas accounting |
 | authors | Michael Schultz; Jonas Knecht; Andreas Vollrath; Oleksandr Diachuk; Andreas Braun; Volker Hochschild |
 | venue | Arbeitskreis Fernerkundung 2026, Thünen-Institut, Braunschweig, Germany |
 | volume |  |
 | issue |  |
 | pages |  |
 | doi |  |
-| status | Programme-listed presentation |
+| status | Public presentation slides available |
 | publication_date | 2026-10-08 |
 | landing_url | https://arbeitskreis-fernerkundung.de/arbeitskreis-fernerkundung/2026-treffen-des-arbeitskreises-fernerkundung-in-braunschweig-programm/ |
 | pdf_url | https://arbeitskreis-fernerkundung.de/wp-content/uploads/Presentation_S5_4__Land_use_and_cover_mapping_and_monitoring__Sentinel-1_coherence-based_dam__Michael_Schultz.pdf |
+| pdf_version | Presentation slides (37 pages) |
 | license |  |
 | verification | verified |
-| notes | Official programme title; the slide title is Sentinel-1 damage proxies in Ukraine: Building-focused trials for LULUCF and greenhouse-gas accounting. Full six-author byline verified from the first slide. Session 5: Land use and cover mapping and monitoring, 8 October 2026, 11:15–12:15. |
+| notes | Title and six-author order follow the title slide of the public 37-page presentation. The official programme lists the same contribution as: Sentinel-1 coherence-based damage proxy maps for Ukraine: a support layer for LULUCF and greenhouse-gas accounting in inaccessible territories. Session 5: Land use and cover mapping and monitoring, 8 October 2026, 11:15–12:15. The two titles identify one contribution, not two publications. |
 | evidence_urls | ["https://arbeitskreis-fernerkundung.de/arbeitskreis-fernerkundung/2026-treffen-des-arbeitskreises-fernerkundung-in-braunschweig-programm/", "https://arbeitskreis-fernerkundung.de/2026-treffen-des-arbeitskreises-fernerkundung-in-braunschweig/", "https://arbeitskreis-fernerkundung.de/wp-content/uploads/Presentation_S5_4__Land_use_and_cover_mapping_and_monitoring__Sentinel-1_coherence-based_dam__Michael_Schultz.pdf"] |
-| checked_on | 2026-11-07 |
+| alternate_title | Sentinel-1 coherence-based damage proxy maps for Ukraine: a support layer for LULUCF and greenhouse-gas accounting in inaccessible territories |
+| checked_on | 2026-11-16 |
 | pdf_status | Public presentation slides available |
 
 ## 2025
@@ -244,6 +305,36 @@ Ortiz Vargas, Andrea; Sett, Dominic; Hansohm, Jonas; Waldschmidt, Florian; Behre
 | notes | Missing from supplied list. PDF cover September 2025; DLR catalogue month August 2025. PDF has61 physical pages. Non-refereed report. |
 | evidence_urls | ["https://elib.dlr.de/216533/", "https://elib.dlr.de/216533/1/vietnam_flood_risk_web.pdf"] |
 | checked_on | 2026-11-05 |
+
+### MS-CCC24B03 — OSMLandUse
+
+Listed presenter: Michael Schultz (2025). OSMLandUse. Jahrestagung des Arbeitskreises Fernerkundung der DGfG, Ruhr-Universität Bochum, Germany.
+
+[Source record](https://arbeitskreis-fernerkundung.de/archiv/2025-treffen-des-arbeitskreises-fernerkundung-in-bochum/) · [Evidence 1](https://arbeitskreis-fernerkundung.de/archiv/2025-treffen-des-arbeitskreises-fernerkundung-in-bochum/) · [Evidence 2](https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/geowissenschaften/arbeitsgruppen/geographie/forschungsbereich/geoinformatik-gis/arbeitsgruppe/aktuelles/)
+
+| Field | Value |
+| --- | --- |
+| record_id | MS-CCC24B03 |
+| year | 2025 |
+| publication_type | Conference presentation |
+| title | OSMLandUse |
+| authors | Michael Schultz |
+| venue | Jahrestagung des Arbeitskreises Fernerkundung der DGfG, Ruhr-Universität Bochum, Germany |
+| volume |  |
+| issue |  |
+| pages |  |
+| doi |  |
+| status | Presented |
+| publication_date | 2025-09-30 |
+| landing_url | https://arbeitskreis-fernerkundung.de/archiv/2025-treffen-des-arbeitskreises-fernerkundung-in-bochum/ |
+| pdf_url |  |
+| license |  |
+| verification | verified |
+| notes | Official programme title and speaker: OSMLandUse, Michael Schultz, 30 September 2025, 11:20–11:35, Session 5: EO for Risk & Assets Management. The University of Tübingen retrospectively confirms his presentation on OSM land-use maps. The programme does not provide a complete coauthor list. A distinct conference presentation related to the 2025 Scientific Data article, not an additional journal article. |
+| evidence_urls | ["https://arbeitskreis-fernerkundung.de/archiv/2025-treffen-des-arbeitskreises-fernerkundung-in-bochum/", "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/geowissenschaften/arbeitsgruppen/geographie/forschungsbereich/geoinformatik-gis/arbeitsgruppe/aktuelles/"] |
+| checked_on | 2026-11-16 |
+| pdf_status | No public presentation slides located |
+| presenter_only | true |
 
 ### MS-A9970964 — OSMlanduse a dataset of European Union land use at 10 m resolution derived from OpenStreetMap and Sentinel-2
 

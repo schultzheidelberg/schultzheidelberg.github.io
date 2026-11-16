@@ -38,6 +38,7 @@ TYPES = {
     'Report contribution': 'incollection',
     'Policy brief contribution': 'techreport',
     'Dataset': 'misc',
+    'Reproducibility package': 'misc',
     'Doctoral thesis': 'phdthesis',
     'Master’s thesis': 'mastersthesis',
 }
@@ -97,7 +98,7 @@ def citation(record):
     venue = ', '.join(str(x) for x in (record['venue'], volume, record.get('pages')) if x)
     names = record['authors']
     if presenter_only(record):
-        names = f'Presenter: {names}'
+        names = f'Listed presenter: {names}'
     return f"{names} ({record['year']}). {record['title']}. {venue}."
 
 
@@ -210,7 +211,7 @@ def write_bibtex(records, path):
                 fields[target] = value
         notes = [f"Status: {record['status']}."]
         if presenter_only(record):
-            notes.append(f"Presenter: {names}. Complete author list not verified.")
+            notes.append(f"Listed presenter: {names}. Complete author list not verified.")
         if record.get('contributors'):
             notes.append(f"Contributors: {record['contributors']}.")
         if record.get('doi_scope'):
@@ -269,7 +270,7 @@ def write_pdf(records, path, font_dir):
 
     paragraph('Michael Schultz<br/>Research bibliography', 'cover', markup=True)
     paragraph(summary(records))
-    paragraph('Journal articles, chapters, research data, reports, conference contributions '
+    paragraph('Journal articles, chapters, research data, software, reports, conference contributions '
               'and theses. Editorial and contributor roles are identified in each record.')
     paragraph('Manuscripts and forthcoming presentations are listed separately on the website '
               'and are excluded from this bibliography.', 'small')
@@ -285,7 +286,7 @@ def write_pdf(records, path, font_dir):
             current_year = record['year']
             paragraph(str(current_year), 'year')
         paragraph(record['title'], 'title')
-        role = 'Presenter' if presenter_only(record) else ('Editors' if
+        role = 'Listed presenter' if presenter_only(record) else ('Editors' if
                record['publication_type'] == 'Edited proceedings' else 'Authors')
         paragraph(f"{role}: {record['authors']}")
         volume = str(record.get('volume', ''))

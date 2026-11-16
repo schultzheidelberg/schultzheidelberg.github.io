@@ -198,6 +198,10 @@ project(160, '03 · Ukraine / Black Sea region',
         image_height=169,
         caption='Sentinel-2, OpenStreetMap-derived training data and reproducible land-cover classification.',
         image_link='https://paabs.de/')
+linked('Braunschweig 2026 · Sentinel-1 damage proxies',
+       URL+'publications/#MS-4BCB13FA', M, 391, 211, 7.2, 10.4)
+linked('Darmstadt 2026 · Copernicus-Landmonitor Ukraine',
+       URL+'publications/#MS-7E6F24F3', M, 408, 211, 7.2, 10.4)
 rule(437)
 project(457, '04 · Europe / Heidelberg',
         'OSM Land Use',

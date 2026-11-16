@@ -1419,7 +1419,7 @@
     "record_id": "MS-10BDFDDE"
   },
   {
-    "title": "Sentinel-1 coherence-based damage proxy maps for Ukraine: a support layer for LULUCF and greenhouse-gas accounting in inaccessible territories",
+    "title": "Sentinel-1 damage proxies in Ukraine: Building-focused trials for LULUCF and greenhouse-gas accounting",
     "authors": "Michael Schultz; Jonas Knecht; Andreas Vollrath; Oleksandr Diachuk; Andreas Braun; Volker Hochschild",
     "year": 2026,
     "publication_type": "Conference presentation",
@@ -1428,7 +1428,7 @@
     "issue": "",
     "pages": "",
     "doi": "",
-    "status": "Programme-listed presentation",
+    "status": "Public presentation slides available",
     "publication_date": "2026-10-08",
     "landing_url": "https://arbeitskreis-fernerkundung.de/arbeitskreis-fernerkundung/2026-treffen-des-arbeitskreises-fernerkundung-in-braunschweig-programm/",
     "pdf_url": "https://arbeitskreis-fernerkundung.de/wp-content/uploads/Presentation_S5_4__Land_use_and_cover_mapping_and_monitoring__Sentinel-1_coherence-based_dam__Michael_Schultz.pdf",
@@ -1438,11 +1438,13 @@
       "https://arbeitskreis-fernerkundung.de/2026-treffen-des-arbeitskreises-fernerkundung-in-braunschweig/",
       "https://arbeitskreis-fernerkundung.de/wp-content/uploads/Presentation_S5_4__Land_use_and_cover_mapping_and_monitoring__Sentinel-1_coherence-based_dam__Michael_Schultz.pdf"
     ],
-    "notes": "Official programme title; the slide title is Sentinel-1 damage proxies in Ukraine: Building-focused trials for LULUCF and greenhouse-gas accounting. Full six-author byline verified from the first slide. Session 5: Land use and cover mapping and monitoring, 8 October 2026, 11:15–12:15.",
+    "notes": "Title and six-author order follow the title slide of the public 37-page presentation. The official programme lists the same contribution as: Sentinel-1 coherence-based damage proxy maps for Ukraine: a support layer for LULUCF and greenhouse-gas accounting in inaccessible territories. Session 5: Land use and cover mapping and monitoring, 8 October 2026, 11:15–12:15. The two titles identify one contribution, not two publications.",
     "verification": "verified",
-    "checked_on": "2026-11-07",
+    "checked_on": "2026-11-16",
     "record_id": "MS-4BCB13FA",
-    "pdf_status": "Public presentation slides available"
+    "pdf_status": "Public presentation slides available",
+    "alternate_title": "Sentinel-1 coherence-based damage proxy maps for Ukraine: a support layer for LULUCF and greenhouse-gas accounting in inaccessible territories",
+    "pdf_version": "Presentation slides (37 pages)"
   },
   {
     "title": "Development, Implementation, and Sustainability of the FRAME Federation for Enhanced Flood Risk Management in Vietnam with effortless large scaling potential",
@@ -1468,5 +1470,82 @@
     "record_id": "MS-0ACB93EF",
     "pdf_status": "No public slides located",
     "presenter_only": true
+  },
+  {
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "doi": "",
+    "license": "",
+    "pdf_url": "",
+    "verification": "verified",
+    "checked_on": "2026-11-16",
+    "title": "Copernicus-Landmonitor Ukraine: halbjährliche 10-m-Karten für Enhanced Transparency Framework (ETF)/National Inventory Report (NIR)",
+    "authors": "Michael Schultz",
+    "year": 2026,
+    "publication_type": "Conference presentation",
+    "venue": "Nationales Forum für Fernerkundung und Copernicus 2026, Session G.3, ESOC, Darmstadt, Germany",
+    "publication_date": "2026-04-30",
+    "status": "Programme-listed impulse talk",
+    "presenter_only": true,
+    "landing_url": "https://archiv.d-copernicus.de/infothek/veranstaltungen/nationales-forum-2026/programm/g3-erdbeobachtung-und-fernerkundung-in-der-anwendungspraxis-von-archaeologie-und-kulturgueterschutz/",
+    "evidence_urls": [
+      "https://archiv.d-copernicus.de/infothek/veranstaltungen/nationales-forum-2026/programm/g3-erdbeobachtung-und-fernerkundung-in-der-anwendungspraxis-von-archaeologie-und-kulturgueterschutz/",
+      "https://archiv.d-copernicus.de/infothek/veranstaltungen/nationales-forum-2026/"
+    ],
+    "notes": "The archived official programme lists Dr. Michael Schultz, University of Tübingen, for this impulse talk in Session G.3, 30 April 2026, 09:00–10:30, room Sentinel. This records the programme credit and does not claim personal delivery or a verified complete author list. Programme text was checked in the indexed official archive; direct archive access returned HTTP 404 on 16 November 2026.",
+    "pdf_status": "No public presentation PDF verified",
+    "record_id": "MS-7E6F24F3"
+  },
+  {
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "doi": "",
+    "license": "",
+    "pdf_url": "",
+    "verification": "verified",
+    "checked_on": "2026-11-16",
+    "title": "OSMLandUse",
+    "authors": "Michael Schultz",
+    "year": 2025,
+    "publication_type": "Conference presentation",
+    "venue": "Jahrestagung des Arbeitskreises Fernerkundung der DGfG, Ruhr-Universität Bochum, Germany",
+    "publication_date": "2025-09-30",
+    "status": "Presented",
+    "presenter_only": true,
+    "landing_url": "https://arbeitskreis-fernerkundung.de/archiv/2025-treffen-des-arbeitskreises-fernerkundung-in-bochum/",
+    "evidence_urls": [
+      "https://arbeitskreis-fernerkundung.de/archiv/2025-treffen-des-arbeitskreises-fernerkundung-in-bochum/",
+      "https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/geowissenschaften/arbeitsgruppen/geographie/forschungsbereich/geoinformatik-gis/arbeitsgruppe/aktuelles/"
+    ],
+    "notes": "Official programme title and speaker: OSMLandUse, Michael Schultz, 30 September 2025, 11:20–11:35, Session 5: EO for Risk & Assets Management. The University of Tübingen retrospectively confirms his presentation on OSM land-use maps. The programme does not provide a complete coauthor list. A distinct conference presentation related to the 2025 Scientific Data article, not an additional journal article.",
+    "pdf_status": "No public presentation slides located",
+    "record_id": "MS-CCC24B03"
+  },
+  {
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "doi": "",
+    "license": "MIT License with World Bank IGO Rider; data-specific terms apply",
+    "pdf_url": "",
+    "verification": "verified",
+    "checked_on": "2026-11-16",
+    "title": "Reproducibility package for Reimagining Logistics and Connectivity from Space: Artificial Intelligence and Satellite Imagery Applications",
+    "authors": "Michael Schultz; Hao Li; Himanshu Tiwari; Daniel Saslavsky; Satya Prasad Sahu; Daria Ulybina",
+    "year": 2026,
+    "publication_type": "Reproducibility package",
+    "venue": "World Bank Reproducible Research Repository",
+    "publication_date": "2026-10-08",
+    "status": "Published",
+    "landing_url": "https://reproducibility.worldbank.org/catalog/667",
+    "evidence_urls": [
+      "https://reproducibility.worldbank.org/catalog/667",
+      "https://reproducibility.worldbank.org/metadata/export/667/json"
+    ],
+    "notes": "Reference RR_WLD_2025_378. Catalog created 8 October 2026; metadata production 5 October 2026; scripts dated September 2026; last modified 20 October 2026. Six creators follow current catalog metadata. Software and reproducibility package accompanying a separate World Bank report; not a journal article. Some input datasets require separate access. The archive and README documentation are available through the catalog.",
+    "pdf_status": "Public reproducibility archive and README available through catalog; no standalone article PDF",
+    "record_id": "MS-E5A45E22"
   }
 ]

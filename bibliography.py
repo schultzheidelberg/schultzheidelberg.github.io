@@ -20,6 +20,7 @@ GROUPS = {
     'Report contribution': 'Reports & briefs',
     'Policy brief contribution': 'Reports & briefs',
     'Dataset': 'Datasets',
+    'Reproducibility package': 'Software & reproducibility',
     'Doctoral thesis': 'Theses',
     'Master’s thesis': 'Theses',
     'Presentation': 'Presentations',
@@ -61,7 +62,7 @@ def render_record(record):
     venue = publication_venue(record)
     doi_url = 'https://doi.org/' + record['doi'] if record.get('doi') else ''
     main_url = record['landing_url'] or doi_url
-    author_label = ('Presenter: ' if record.get('presenter_only') else '') + record['authors']
+    author_label = ('Listed presenter: ' if record.get('presenter_only') else '') + record['authors']
     citation = f"{author_label} ({record['year']}). {title}. {venue}."
     if doi_url:
         citation += ' ' + doi_url
@@ -88,7 +89,7 @@ def render_record(record):
     scope = '<p>The DOI identifies the complete volume, not this individual contribution.</p>' if record.get('doi_scope') else ''
     group = GROUPS[record['publication_type']]
     haystack = ' '.join(str(record.get(key, '')) for key in
-                        ('title', 'authors', 'year', 'venue', 'doi', 'publication_type', 'contributors'))
+                        ('title', 'alternate_title', 'authors', 'year', 'venue', 'doi', 'publication_type', 'contributors'))
     return f'''<article class="publication" id="{escape(record['record_id'])}" data-search="{escape(haystack, quote=True)}" data-type="{escape(group, quote=True)}" data-year="{record['year']}">
 <time class="pub-year" datetime="{record['year']}">{record['year']}</time><div>
 <p class="pub-type">{escape(record['publication_type'])}</p>
@@ -124,7 +125,7 @@ def render_publications(records, metrics):
 <div class="bibliography-overview">
 <dl class="publication-stats"><div><dt>h-index · {metric_source}</dt><dd>{metrics['h_index']}</dd></div><div><dt>Verified research outputs</dt><dd>{total}</dd></div><div><dt>Journal articles</dt><dd>{journal_count}</dd></div><div><dt>Years of work</dt><dd>{min(years)}–{max(years)}</dd></div></dl>
 <p class="subtle">h-index: {escape(metrics['source'])}, checked <time datetime="{metrics_checked.isoformat()}">{metrics_date_label}</time>. Citation metrics vary by database.</p>
-<p class="subtle">Journal articles, chapters, datasets, reports, theses, and conference contributions. Editorial and contributor roles are labelled in each record. Last checked <time datetime="{checked.isoformat()}">{checked_label}</time>.</p>
+<p class="subtle">Journal articles, chapters, datasets, software, reports, theses, and conference contributions. Editorial and contributor roles are labelled in each record. Last checked <time datetime="{checked.isoformat()}">{checked_label}</time>.</p>
 </div>
 <section class="bibliography-downloads" aria-labelledby="download-bibliography"><h2 id="download-bibliography">Take the bibliography with you</h2><p>Download the complete public inventory, with citations and source notes.</p><div class="download-links">{downloads}</div></section>
 <div class="publication-tools" hidden>
