@@ -167,9 +167,9 @@ project(321, '01 · Huế / Central Vietnam',
         'FRAME · FloodAdaptVN · BMFTR funding',
         'Flood scenarios, exposure and adaptation options for Huế and Central Vietnam. '
         'I connect geospatial research with accessible tools for exploring flood risk and local planning.',
-        'frame-home.webp', [('framefavn.org', 'https://framefavn.org/')], height=206,
+        'frame-home.webp', [('frame-vn.org', 'https://frame-vn.org/')], height=206,
         caption='BMFTR supports FloodAdaptVN’s current implementation phase.',
-        image_link='https://framefavn.org/')
+        image_link='https://frame-vn.org/')
 rule(541)
 project(560, '02 · African border crossings',
         'Trade Fluidity & Border Monitoring',
